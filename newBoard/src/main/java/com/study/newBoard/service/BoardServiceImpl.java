@@ -1,5 +1,6 @@
 package com.study.newBoard.service;
 
+import com.study.newBoard.dao.BoardDao;
 import com.study.newBoard.entity.Board;
 import com.study.newBoard.entity.Boarda;
 import com.study.newBoard.repository.BoardRepository;
@@ -11,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -23,6 +22,9 @@ public class BoardServiceImpl implements BoardService{
 
     @Autowired
     private BoardaRepository boardaRepository;
+
+    @Autowired
+    private BoardDao boardDao;
 
     @Override
     public void write(Board board, MultipartFile file) throws Exception{
@@ -76,6 +78,13 @@ public class BoardServiceImpl implements BoardService{
 
         boardaRepository.save(boarda);
 
+    }
+
+    //mybatis xml
+    public List<Map<String, String>> boardList2(){
+        List<Map<String, String>> list = new ArrayList<>();
+        list = boardDao.boardList2();
+        return list;
     }
 
 }

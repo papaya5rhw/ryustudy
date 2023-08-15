@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface BoardService {
@@ -25,5 +26,9 @@ public interface BoardService {
     public void boardDelete(Integer id);
 
     public void write2(Boarda boarda) throws Exception;
+
+    //mybatis xml
+    public List<Map<String, String>> boardList2();
+
 
 }

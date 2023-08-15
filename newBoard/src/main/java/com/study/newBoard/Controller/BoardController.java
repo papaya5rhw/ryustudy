@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -171,6 +174,23 @@ public class BoardController {
 
         //return "redirect:/board/list";
         return "message";
+    }
+    
+    //조회
+    //mybatis xml text
+    @GetMapping("/board/list2")
+    @ResponseBody
+    public String boardList2(){
+        List<Map<String, String>> list = new ArrayList<>();
+        list = boardService.boardList2();
+
+        for(Map<String, String> map : list){
+            System.out.println("아이디:" + String.valueOf(map.get("id")));
+            System.out.println("타이틀:" + String.valueOf(map.get("title")));
+            System.out.println("내용:" + String.valueOf(map.get("content")));
+        }
+
+        return "타이틀:" + String.valueOf(list.get(0).get("title"));
     }
 
 
